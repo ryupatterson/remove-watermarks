@@ -16,7 +16,7 @@ except:
 STRING_OPS = [pikepdf.Operator("Tj"), pikepdf.Operator("TJ")]
 FONT_OPS = [pikepdf.Operator("Tf")]
 
-def clean_pdf(pdf_path: str, password: str, output_dir: str, is_sans_path=False):
+def clean_pdf(pdf_path: str, password: str, output_dir: str, is_class_path=False):
 	with pikepdf.open(pdf_path, password = password) as p:
 		for i, page in enumerate(p.pages):
 			bad_fonts = []
@@ -43,7 +43,7 @@ def clean_pdf(pdf_path: str, password: str, output_dir: str, is_sans_path=False)
 			page.Contents = p.make_stream(new_stream)
 
 		basename = Path(pdf_path).stem
-		if not is_sans_path:
+		if not is_class_path:
 			out_path = os.path.join(output_dir, f"{basename}_cleaned.pdf")
 		else:
 			out_path = os.path.join(output_dir, convert_class_path(basename))
@@ -111,7 +111,7 @@ if __name__ == "__main__":
 	if args.file:
 		print_info(f"Cleaning {args.file}...")
 		try:
-			clean_pdf(args.file, args.password, args.output_dir, is_sans_path=is_class_path(args.file))
+			clean_pdf(args.file, args.password, args.output_dir, is_class_path=is_class_path(args.file))
 		except Exception as e:
 			print_err(f"Couldn't process {args.file} because of: {e}")
 			exit(1)
@@ -120,7 +120,7 @@ if __name__ == "__main__":
 		for file in files:
 			print_info(f"Cleaning {file}...")
 			try:
-				clean_pdf(file, args.password, args.output_dir, is_sans_path=is_class_path(file))
+				clean_pdf(file, args.password, args.output_dir, is_class_path=is_class_path(file))
 			except Exception as e:
 				print_err(f"Couldn't process {file} because of: {e}")
 			print()
