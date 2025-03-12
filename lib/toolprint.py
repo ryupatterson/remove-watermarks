@@ -1,4 +1,4 @@
-from colorprint import format_string
+from lib.colorprint import format_string
 
 
 INFO_PREFIX    = "[*]"

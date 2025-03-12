@@ -5,7 +5,7 @@ import os
 from pathlib import Path
 import re
 import glob
-from toolprint import print_info, print_err, print_success
+from lib.toolprint import print_info, print_err, print_success
 
 try:
 	import pikepdf
