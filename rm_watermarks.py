@@ -64,7 +64,7 @@ def convert_class_path(pdf_basename: str) -> str:
 		book_num_splits = splits[1].split("_")
 		return f"{classname}_{book_num_splits[0]}.pdf"
 	else:    
-		return f"{classname}_{book_num_splits[0]}_{book_num_splits[1].split("_")[0]}.pdf"
+		return f"{classname}_{book_num_splits[0]}_{book_num_splits[1].split('_')[0]}.pdf"
 
 def output_dir_path(path: str) -> bool:
 	if os.path.isdir(path):
